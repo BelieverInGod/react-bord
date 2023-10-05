@@ -110,6 +110,7 @@ function CategoryList({ categories, onCategoryAdd, onCategoryRemove }: CategoryL
                             onChange={(e) => handleCategoryNameChange(category, e.target.value)}
                             onBlur={() => handleCategoryNameBlur(category)}
                             style={{ backgroundColor: inputColor }}
+                            placeholder='categories name..'
                         />
                     ) : (
                         <input
@@ -118,6 +119,7 @@ function CategoryList({ categories, onCategoryAdd, onCategoryRemove }: CategoryL
                             onChange={(e) => updateCategoryInput(category.id, e.target.value)}
                             onBlur={() => handleCategoryNameBlur(category)}
                             style={{ backgroundColor: inputColor }}
+                            placeholder='categories name..'
                         />
                     )}
                     <button className='delete-button' onClick={() => deleteCategory(category, parentCategory)}>x</button>

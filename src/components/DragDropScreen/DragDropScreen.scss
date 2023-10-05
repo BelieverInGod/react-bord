@@ -7,23 +7,17 @@
  display: flex;
  justify-content: center;
  align-items: center;
+ position: absolute;
+
  &::before {
     content: "";
     width: 25000px; 
     height: 15000px; 
     position: absolute;
-    top: -10000px;
-    left: -10000px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     background-color: inherit; 
     cursor: all-scroll;
-  }
-    .draggableObject {
-        width: 100px;
-        height: 100px;
-        position: absolute;
-        z-index: 10;
-        background-color: red;
-        cursor: pointer;
-    }
-    
+  } 
 }
