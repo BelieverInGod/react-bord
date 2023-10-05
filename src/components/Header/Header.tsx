@@ -43,7 +43,7 @@ const Header: React.FC<HeaderProps> = ({ onZoomIn, onZoomOut, scale, setScale })
             </div>
             <div className='btns'>
                 <div className='listView'>LIST VIEW</div>
-                <div className='nav'>nav</div>
+                <div className='nav'>♦</div>
                 <div className='zoomContainer'>
                     <button className='zoomBtn' onClick={onZoomIn}>+</button>
                     <div className='zoomPercent' onClick={toggleClass}>{scale}%

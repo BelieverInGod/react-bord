@@ -93,8 +93,12 @@ function CategoryList({ categories, onCategoryAdd, onCategoryRemove }: CategoryL
         onCategoryRemove(category);
     };
 
-    const renderCategory = (category: Category, parentCategory?: Category) => {
+    const renderCategory = (category: Category, parentCategory?: Category, nestingLevel: number = 0) => {
         const isEditing = editingCategory === category;
+
+        const inputColors = ['#ffffff', '#F8C471', '#5DADE2', '#58D68D'];
+
+        const inputColor = inputColors[nestingLevel % inputColors.length];
 
         return (
             <li key={category.id}>
@@ -105,7 +109,7 @@ function CategoryList({ categories, onCategoryAdd, onCategoryRemove }: CategoryL
                             value={category.editingName}
                             onChange={(e) => handleCategoryNameChange(category, e.target.value)}
                             onBlur={() => handleCategoryNameBlur(category)}
-                            autoFocus
+                            style={{ backgroundColor: inputColor }}
                         />
                     ) : (
                         <input
@@ -113,17 +117,17 @@ function CategoryList({ categories, onCategoryAdd, onCategoryRemove }: CategoryL
                             value={categoryInputs[category.id]}
                             onChange={(e) => updateCategoryInput(category.id, e.target.value)}
                             onBlur={() => handleCategoryNameBlur(category)}
+                            style={{ backgroundColor: inputColor }}
                         />
                     )}
-                    <button className='delete-button' onClick={() => deleteCategory(category, parentCategory)}>Delete</button>
+                    <button className='delete-button' onClick={() => deleteCategory(category, parentCategory)}>x</button>
                     <button className="subcategory-button" onClick={() => createSubcategory(category)}>+</button>
-
                 </div>
                 {category.children && (
                     <ul>
                         {category.children.map((childCategory) => (
                             <li key={childCategory.id}>
-                                {renderCategory(childCategory, category)}
+                                {renderCategory(childCategory, category, nestingLevel + 1)}
                             </li>
                         ))}
                     </ul>
@@ -140,17 +144,9 @@ function CategoryList({ categories, onCategoryAdd, onCategoryRemove }: CategoryL
 
     return (
         <div className="CategoryList">
-            {/* <h2>Categories</h2> */}
             <ul>
                 {renderRootCategories()}
                 <li>
-                    {/* <input
-                        type="text"
-                        placeholder="New category"
-                        value={newCategoryName}
-                        onChange={(e) => setNewCategoryName(e.target.value)}
-                    />
-                    <button className="category-button" onClick={() => createCategory()}>Add Category</button> */}
                 </li>
             </ul>
         </div>
